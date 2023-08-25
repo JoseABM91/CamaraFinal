@@ -21,32 +21,33 @@
         android:id="@+id/imageButtonCamara"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="botonCamara"
         android:text="Camara" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="124dp"
+        android:layout_height="260dp"
         android:orientation="vertical">
 
-        <TextView
+        <EditText
             android:id="@+id/editTextNombre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nombre:" />
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:hint="Nombre:" />
 
-        <TextView
+        <EditText
             android:id="@+id/editTextApellido"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
             android:layout_marginTop="22dp"
-            android:text="Apellido:" />
+            android:hint="Apellido:" />
 
-        <TextView
+        <EditText
             android:id="@+id/editTextProfesion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
             android:layout_marginTop="28dp"
-            android:text="Profesion:" />
+            android:hint="Profesión:" />
 
     </LinearLayout>
 

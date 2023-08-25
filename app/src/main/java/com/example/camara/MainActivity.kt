@@ -15,6 +15,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.gson.Gson
 
 
 class MainActivity : AppCompatActivity() {
@@ -50,10 +51,14 @@ class MainActivity : AppCompatActivity() {
     fun guardar(view: View) {
         var builder: AlertDialog.Builder = AlertDialog.Builder(this);
         builder.setTitle("¿Deseas guardar tus datos?");
-        builder.setMessage("Nombre: $editTextNombre Apellidos: $editTextApellido Profesion: $editTextProfesion");
+        var nombre = editTextNombre.text.toString()
+        var apellido = editTextNombre.text.toString()
+        var profesion = editTextNombre.text.toString()
+        builder.setMessage("Nombre: $nombre Apellidos: $apellido Profesion: $profesion");
 
         builder.setPositiveButton("Si") { view, p1 ->
-            var mensaje = "Bienvenid@ $editTextNombre"
+            var nombre = editTextNombre.text.toString()
+            var mensaje = "Bienvenid@ $nombre"
             Toast.makeText(applicationContext, mensaje, Toast.LENGTH_LONG).show();
 
             listaElementos.add(
@@ -67,21 +72,23 @@ class MainActivity : AppCompatActivity() {
         builder.setNegativeButton("No") { view, p1 ->
             var mensaje = "Eliminando datos"
             Toast.makeText(applicationContext, mensaje, Toast.LENGTH_LONG).show();
+            fun dismiss() {
+                dismiss()
+            }
+
         }
         builder.show();
     }
 
+
     fun VerListado(view: View) {
-
-
         var lista: Intent = Intent(this, MainActivity2::class.java)
         //GUARDAR LISTA listaElementos
         var gson = Gson();
-        var data = gson.toJson(lista);
-        var lista2 = gson.fromJson(data, ArrayList<DataItem>);
+        var data = gson.toJson(listaElementos);
+        lista.putExtra("Lista", data);
         var a = 0;
         startActivity(lista)
-
     }
 
 
@@ -94,7 +101,7 @@ class MainActivity : AppCompatActivity() {
                 Manifest.permission.CAMERA
             ) == PackageManager.PERMISSION_GRANTED
         ) {
-            botonCamara();
+            takePicture();
         } else {
             ActivityCompat.requestPermissions(
                 this,

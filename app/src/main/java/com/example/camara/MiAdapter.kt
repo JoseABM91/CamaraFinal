@@ -4,15 +4,17 @@ import android.app.Activity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.ImageView
 import android.widget.TextView
 
 class MiAdapter(private val activity: Activity, private val listaElementos: ArrayList<DataItem>): BaseAdapter() {
 
     class ViewHolder{
 
-        lateinit var textViewNombre: TextView;
-        lateinit var textViewApellido: TextView;
-        lateinit var textViewProfesion: TextView;
+        lateinit var nombre: TextView;
+        lateinit var apellido: TextView;
+        lateinit var profesion: TextView;
+
     }
 
     override fun getCount(): Int {
@@ -33,16 +35,23 @@ class MiAdapter(private val activity: Activity, private val listaElementos: Arra
 
         if(filaView == null){
             var inflater = activity.layoutInflater;
-            filaView = inflater.inflate(R.layout.activity_main2, null, true);
-//////////////
+            filaView = inflater.inflate(R.layout.elementos, null, true);
+
+            viewHolder.nombre = filaView.findViewById<TextView>(R.id.textViewNombre);
+            viewHolder.apellido = filaView.findViewById<TextView>(R.id.textViewApellido);
+            viewHolder.profesion = filaView.findViewById<TextView>(R.id.textViewProfesion);
+
+
             filaView.tag = viewHolder;
         }
         else{
             viewHolder = filaView.tag as MiAdapter.ViewHolder
         }
-        viewHolder.textViewNombre.text = listaElementos[indice].nombre;
-        viewHolder.textViewApellido.text = listaElementos[indice].apellido;
-        viewHolder.textViewProfesion.text = listaElementos[indice].apellido;
+        viewHolder.nombre.text = listaElementos[indice].nombre;
+        viewHolder.apellido.text = listaElementos[indice].apellido;
+        viewHolder.profesion.text = listaElementos[indice].apellido;
+
+
         return filaView!!;
     }
 }
